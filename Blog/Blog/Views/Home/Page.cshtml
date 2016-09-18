@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Page</title>
+</head>
+<body>
+    <div>
+        <p>Logined as:</p>
+        @Model.User.Name
+        @Model.User.LastName
+
+        <div>
+            <a href="/Home/Login">Exit</a>
+        </div>
+        <hr />
+        <hr />
+
+    </div>
+    <div>
+        @using (Html.BeginForm("PostMessage", "Home", FormMethod.Post))
+        {
+            @Html.TextBox("message")
+            <input type="submit" , value="Post" />
+        }
+    </div>
+    <div> 
+        @foreach (var el in Model.Posts)
+        {
+            <h3>@el.User.LastName @el.User.Name</h3>
+            <p>@el.Time</p>
+            <h4>@el.Text</h4>
+            <hr />
+        }
+    </div>
+</body>
+</html>
